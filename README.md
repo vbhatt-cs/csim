@@ -1,8 +1,7 @@
 # csim
 A simple combat simulator
 
-(c) 2018 Michael Buro
-Licensed under GPLv3
+(c) 2018 Michael Buro ; Licensed under GPLv3
 
 This is a simple, fast, and extensible RTS game combat simulator
 
