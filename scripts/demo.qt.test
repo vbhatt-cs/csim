@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# small
+#vblank_mode=0 csim --world Plain --wpar "500 500" -w 800 -h 800 --rplayer IndCtrl --bplayer IndCtrl --rpar attack_none --bpar attack_none -d 0 -g 1 $@
+
+# large
+vblank_mode=0 csim --world Plain --wpar "2000 2000" -w 16384 -h 8192 --rplayer IndCtrl --bplayer IndCtrl --rpar attack_none --bpar attack_none -d 0 -g 0.1 $@
+

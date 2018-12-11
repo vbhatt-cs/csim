@@ -1,0 +1,36 @@
+Runtimes (millis/frame) for moving 2*(M+T) moving units in total with attack
+computation (but not execution)
+
+BF = Brute Force (USE_QT = 0)
+QT = Quadtree    (USE_QT = 1)
+
+in more sparse environments QT rules
+(in denser ones there are hundreds of targets for tanks)
+
+       BF   QT
+
+w|h=2048 (64 tiles)
+
+M|T (marines|tanks)
+1000  24   27
+1500  53   62
+2000 100  105
+3000 223  260
+
+
+w|h=16384 (512 tiles)
+
+M|T       
+1000  16    2.5
+1500  36    5
+2000  64    8
+3000 145   14
+
+
+w|h=65536 (2048 tiles)
+
+M|T
+1000  15   1.5
+1500  35   3
+2000  64   4
+3000 150   7

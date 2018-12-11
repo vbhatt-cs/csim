@@ -1,0 +1,6 @@
+#!/bin/bash
+
+time csim --world Plain --wpar "100 100" -w 800 -h 800 --rplayer IndCtrl --bplayer IndCtrl --rpar attack_closest --bpar attack_closest
+
+
+

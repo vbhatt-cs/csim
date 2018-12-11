@@ -1,0 +1,4 @@
+#!/bin/bash
+
+vblank_mode=0 csim --world Plain --wpar "2000 2000" -w 16384 -h 8192 --rplayer IndCtrl --bplayer IndCtrl --rpar attack_closest --bpar attack_closest -d 0 -g 0.1 $@
+
