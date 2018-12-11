@@ -9,7 +9,7 @@ Currently supported:
 
 - two AI players (RED vs BLUE) playing a single RTS combat game
 - games are played on empty (width x height) maps
-- unit types: tanks, marines (basic stats copied from BroodWar) (see UnitTypes*)
+- unit types: tanks, marines (basic stats copied from SC:BW) (see UnitTypes*)
 - sample world W_Plain supports random start state (tanks,marines in mirrored
   locations)
 - linear any-angle motion to (x,y) at max-speed, stop when running into border
@@ -110,9 +110,11 @@ Screenshots:
 
 <div align="center">
   400 units on 800x800 map [./scripts/demo.small.gfx]
+  <br>
     <img src="/doc/small.png" width="400px"</img>
   <br>
   8000 units on 16384x8192 map [./scripts/demo.large.gfx]
+  <br>
     <img src="/doc/large.png" width="800px"</img> 
 </div>
 
