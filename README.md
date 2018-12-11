@@ -1,9 +1,8 @@
 # csim
-A simple combat simulator
-
+A simple, fast, and extensible RTS game combat simulator
 (c) 2018 Michael Buro ; Licensed under GPLv3
 
-This is a simple, fast, and extensible RTS game combat simulator
+---
 
 Currently supported:
 
