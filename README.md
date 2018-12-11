@@ -1,5 +1,6 @@
 # csim
 A simple, fast, and extensible RTS game combat simulator written in C++
+
 (c) 2018 Michael Buro ; Licensed under GPLv3
 
 ---
