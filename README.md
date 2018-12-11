@@ -24,8 +24,9 @@ Speed:
 
 - scripts/demo.qt.test
 - 2 x (2000 marines + 2000 tanks)
-- 16384 x 8192 pixel map (marine/tank stats normalized to SC:BW dimensions)
-- all units moving towards random location on map border
+- 16384 x 8192 pixel map (marine/tank stats are copied from SC:BW, i.e.,
+  this map corresponds to a 512x256 tile SC:BW map which is huge)
+- all units move towards random locations on the map border
 - AI players are running target selection code (but don't actually fire)
 - 2 AI players + simulation: 100 fps on single core (i7-3630QM CPU @ 2.40GHz)
 - 2 AI players + simulation + gfx: 30 fps
@@ -34,8 +35,8 @@ Speed:
 
 To come:
 
-- [soon] store replays / replay them
 - [soon] serialize states / actions (to interact with Python ML code)
+- [soon] store replays / replay them
 - [soon] better AI players (train NNs)
 - [soon] fog of war (implemented, but not tested yet)
 - [later] Windows/MacOS build system
@@ -58,8 +59,8 @@ src/
 - P_*        sample player
 - Unit*      unit types
 - Quadtree.h for faster attack / visibility test in sparse worlds
-             (currently only used in P_*, can be switched on/off there)
- -Gfx.*      displays world, is a WorldListener
+             (currently only used in P_* , can be switched on/off there)
+- Gfx.*      displays world, is a WorldListener
 
 doc/
 - documentation
@@ -71,9 +72,10 @@ scripts/
 
 dependencies:
 
+- g++ build chain, including make
 - g++ 7+
 - boost-devel (program_options)
-- glut/GL
+- GL and [free]glut
 
 ---
 
