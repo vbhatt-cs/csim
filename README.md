@@ -70,7 +70,7 @@ scripts/
 
 ---
 
-dependencies:
+Dependencies:
 
 - g++ build chain, including make
 - g++ 7+
@@ -79,14 +79,14 @@ dependencies:
 
 ---
 
-compile:
+Compile:
 
  - make -j4 [MODE=opt|dbg]
  - creates ./csim
   
 ---
 
-run:
+Run:
 
 - ./csim -g 1
 - ./csim --help
@@ -98,8 +98,23 @@ run:
 
 ---
 
-extend:
+Extend:
 
 - add your own worlds (W_* ) and players (P_* )
 - register them in csim.cpp (newPlayer/newWorld)
 - select them for playing via command line options
+
+---
+
+Screenshots:
+
+<div align="center">
+  400 units on 800x800 map [./scripts/demo.small.gfx]
+    <img src="/doc/small.png" width="400px"</img>
+  <br>
+  8000 units on 16384x8192 map [./scripts/demo.large.gfx]
+    <img src="/doc/large.png" width="800px"</img> 
+</div>
+
+
+
