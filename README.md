@@ -7,16 +7,30 @@ A simple, fast, and extensible RTS game combat simulator written in C++
 
 Currently supported:
 
-- two AI players playing a single RTS combat game (add more players in newPlayer())
-- select policy for each player (string parameter)
-- unit types: tanks, marines (stats copied from BroodWar) (see UnitTypes*)
-- empty width x height map
+- two AI players (RED vs BLUE) playing a single RTS combat game
+- games are played on empty (width x height) maps
+- unit types: tanks, marines (basic stats copied from BroodWar) (see UnitTypes*)
 - sample world W_Plain supports random start state (tanks,marines in mirrored
   locations)
+- linear any-angle motion to (x,y) at max-speed, stop when running into border
 - no unit-unit collisions
-- linear motion to (x,y) at max-speed, stop when running into border
-- attacking units within attack range
+- attacking units within attack range (Quadtree used to speed this up)
 - removing units with hp <= 0
+- select policy for each player (string parameter)
+
+---
+
+Speed:
+
+- scripts/demo.qt.test
+- 2 x (2000 marines + 2000 tanks)
+- 16384 x 8192 pixel map (marine/tank stats normalized to SC:BW dimensions)
+- all units moving towards random location on map border
+- AI players are running target selection code (but don't actually fire)
+- 2 AI players + simulation: 100 fps on single core (i7-3630QM CPU @ 2.40GHz)
+- 2 AI players + simulation + gfx: 30 fps
+
+---
 
 To come:
 
@@ -72,6 +86,7 @@ compile:
 
 run:
 
+- ./csim -g 1
 - ./csim --help
 - ./scripts/demo.small.gfx
 - ./scripts/demo.large.gfx
