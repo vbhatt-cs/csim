@@ -91,12 +91,13 @@ run:
 - ./scripts/demo.small.gfx
 - ./scripts/demo.large.gfx
 - ./scripts/demo.small
-- ./scripts/demo.large  
-  
+- ./scripts/demo.large
+- ./scripts/demo.qt.test
+
 ---
 
 extend:
 
-- add your own worlds (W_*) and players (P_*)
+- add your own worlds (W_* ) and players (P_* )
 - register them in csim.cpp (newPlayer/newWorld)
 - select them for playing via command line options
