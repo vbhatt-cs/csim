@@ -34,50 +34,49 @@ Files:
 
 src/
 
-  csim.cpp   contains main, handles options and single game
-  Global.h   common global includes, definitions, and classes
-  World.*    world base class; represents game (units, players, ...)
-  WorldListener.h  world client interface
-  Player.*   AI player base class
-  PlayerView.* world view for players (detaches players from world)
-  W_*        sample world
-  P_*        sample player
-  Unit*      unit types
-  Quadtree.h for faster attack / visibility test in sparse worlds
+- csim.cpp   contains main, handles options and single game
+- Global.h   common global includes, definitions, and classes
+- World.*    world base class; represents game (units, players, ...)
+- WorldListener.h  world client interface
+- Player.*   AI player base class
+- PlayerView.* world view for players (detaches players from world)
+- W_*        sample world
+- P_*        sample player
+- Unit*      unit types
+- Quadtree.h for faster attack / visibility test in sparse worlds
              (currently only used in P_*, can be switched on/off there)
-  Gfx.*      displays world, is a WorldListener
+ -Gfx.*      displays world, is a WorldListener
 
 doc/
-  documentation
+- documentation
 
 scripts/
-  some demo scripts
+- some demo scripts
 
 ============================================================================
 
 dependencies:
 
-  g++ 7+
-  boost-devel (program_options)
-  glut/GL
+- g++ 7+
+- boost-devel (program_options)
+- glut/GL
 
 ============================================================================
 
 compile:
 
-  make -j4 [MODE=opt|dbg]
-
-  creates ./csim
+ - make -j4 [MODE=opt|dbg]
+ - creates ./csim
   
 ============================================================================
 
 run:
 
-  ./csim --help
-  ./scripts/demo.small.gfx
-  ./scripts/demo.large.gfx
-  ./scripts/demo.small
-  ./scripts/demo.large  
+- ./csim --help
+- ./scripts/demo.small.gfx
+- ./scripts/demo.large.gfx
+- ./scripts/demo.small
+- ./scripts/demo.large  
   
 ============================================================================
 
