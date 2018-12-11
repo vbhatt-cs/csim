@@ -2,6 +2,7 @@
 
 // world interface for players
 // what a player sees ...
+// also stores actions a player computes
 
 #include "Unit.h"
 #include "Action.h"
@@ -35,7 +36,7 @@ public:
 
   void enemiesWithinAttackRange(const Unit &u,
                                 const Quadtree<Unit> &qtOpp,
-                                float4 maxRadius,
+                                fp_t maxRadius,
                                 std::vector<const Unit *> &attackableUnits) const;
 
   void closestTargetIndexes(const Unit &u,
@@ -58,7 +59,7 @@ private:
   fp_t qtEps;
   int playerId;
   std::vector<Unit> units;
-  float4 maxRadius; // of all units (for quadtree queries)
+  fp_t maxRadius; // of all units (for quadtree queries)
   std::map<int, Action> actions; // unit id -> action
 
   // called by world

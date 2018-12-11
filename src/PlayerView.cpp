@@ -18,8 +18,7 @@ void PlayerView::enemiesWithinAttackRange(const Unit &u,
 {
   attackableUnits.clear();
 
-  for (size_t i=0; i < enemyUnits.size(); ++i) {
-    const Unit &v = enemyUnits[i];
+  for (const Unit &v : enemyUnits) {
     
     if (u.owner == v.owner) {
       cout << "what?" << endl;
@@ -35,12 +34,12 @@ void PlayerView::enemiesWithinAttackRange(const Unit &u,
 
 void PlayerView::enemiesWithinAttackRange(const Unit &u,
                                           const Quadtree<Unit> &qtOpp,
-                                          float4 maxRadius,
+                                          fp_t maxRadius,
                                           std::vector<const Unit *> &attackableUnits) const
 {
   assert(maxRadius > 0);
   
-  float4 r = u.visionRange + maxRadius * 1.1f; // avoid rounding problems
+  fp_t r = u.visionRange + maxRadius * 1.1f; // avoid rounding problems
   vector<const Unit*> candidateUnits;
 
   // cout << "enemy query " << u.unitId << endl;
@@ -49,16 +48,15 @@ void PlayerView::enemiesWithinAttackRange(const Unit &u,
   
   attackableUnits.clear();
 
-  for (size_t i=0; i < candidateUnits.size(); ++i) {
-    const Unit &v = *candidateUnits[i];
+  for (const Unit *p : candidateUnits) {
     
-    if (u.owner == v.owner) {
+    if (u.owner == p->owner) {
       cout << "what?" << endl;
       continue; // player is owner
     }
 
-    if (World::canAttack(u, v)) {
-      attackableUnits.push_back(&v);
+    if (World::canAttack(u, *p)) {
+      attackableUnits.push_back(p);
     }
   }
 }
@@ -73,18 +71,15 @@ void PlayerView::weakestTargetIndexes(const Unit &/*u*/,
 {
   targetIds.clear();
   
-  int n = (int)attackableUnits.size();
-
-  if (!n) {
+  if (attackableUnits.empty()) {
     return;
   }
 
   int min = numeric_limits<int>::max();
   
-  for (const Unit *p : attackableUnits) {
+  for (const Unit *ptu : attackableUnits) {
 
-    const Unit &tu = *p;
-    int hp = tu.hp;
+    int hp = ptu->hp;
 
     if (hp > min) {
       continue;
@@ -95,7 +90,7 @@ void PlayerView::weakestTargetIndexes(const Unit &/*u*/,
       targetIds.clear();
     }
 
-    targetIds.push_back(tu.unitId);
+    targetIds.push_back(ptu->unitId);
   }
 
   assert(!targetIds.empty());  
@@ -111,18 +106,15 @@ void PlayerView::closestTargetIndexes(const Unit &u,
 {
   targetIds.clear();
   
-  int n = (int)attackableUnits.size();
-
-  if (!n) {
+  if (attackableUnits.empty()) {
     return;
   }
 
   double min = std::numeric_limits<double>::max();
   
-  for (const Unit *p : attackableUnits) {
+  for (const Unit *ptu : attackableUnits) {
 
-    const Unit &tu = *p;
-    double d2 = u.pos.dist2(tu.pos);
+    double d2 = u.pos.dist2(ptu->pos);
 
     if (d2 > min) {
       continue;
@@ -133,7 +125,7 @@ void PlayerView::closestTargetIndexes(const Unit &u,
       targetIds.clear();
     }
 
-    targetIds.push_back(tu.unitId);
+    targetIds.push_back(ptu->unitId);
   }
 
   assert(!targetIds.empty());
@@ -149,20 +141,17 @@ void PlayerView::mostDangerousTargetIndexes(const Unit &/*u*/,
 {
   targetIds.clear();
   
-  int n = (int)attackableUnits.size();
-
-  if (!n) {
+  if (attackableUnits.empty()) {
     return;
   }
 
   double max = std::numeric_limits<double>::lowest();
   
-  for (const Unit *p : attackableUnits) {
+  for (const Unit *ptu : attackableUnits) {
 
-    const Unit &tu = *p;
-
-    assert(tu.hp > 0);
-    double danger = (double) tu.attack / (double) (tu.cooldown+1) / tu.hp;
+    assert(ptu->hp > 0);
+    // cooldown 0: can fire constantly => need +1 for DPF computation
+    double danger = (double) ptu->attack / (double) (ptu->cooldown+1) / ptu->hp;
 
     if (danger < max) {
       continue;
@@ -173,7 +162,7 @@ void PlayerView::mostDangerousTargetIndexes(const Unit &/*u*/,
       targetIds.clear();
     }
 
-    targetIds.push_back(tu.unitId);
+    targetIds.push_back(ptu->unitId);
   }
   
   assert(!targetIds.empty());

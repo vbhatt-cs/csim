@@ -1,7 +1,6 @@
 #include "W_Plain.h"
-
-#include <sstream>
 #include "UnitTypes.h"
+#include <sstream>
 
 using namespace std;
 

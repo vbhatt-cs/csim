@@ -1,13 +1,11 @@
 #pragma once
 
-// quadtree allowing duplicate position 
+// quadtree allowing duplicate points
 // (0,0) = lower left corner
 // requires Point to implement Coor getX(), Coor getY()
 
 #include "Global.h"
 #include <array>
-
-// P must provide Coor getX(), Coor getY()
 
 #define DEBUG_QT 0
 
@@ -72,8 +70,8 @@ private:
 
     ~Node()
     {
-      for (int i=0; i < 4; ++i) {
-        delete children[i];
+      for (auto p: children) {
+        delete p;
       }
     }
 
@@ -260,6 +258,7 @@ public:
       for (auto &oldP : node->leafPoints) {
         if (*pp == *oldP) {
           // found: erase
+          // todo: how about bounding box - may be invalid ...
           node->leafPoints.erase(&pp);
           return true;
         }
@@ -275,7 +274,7 @@ public:
     }
 
     int dx = pp->getX() >= node->children[1]->rect.xMin;
-    int dy = pp->getY() >= node->children[1]->rect.yMin;                                
+    int dy = pp->getY() >= node->children[2]->rect.yMin;
     
     if (!remove(node->children[dy*2+dx], pp)) {
       return false;
@@ -288,8 +287,8 @@ public:
         node->children[2]->isEmptyLeaf() &&
         node->children[3]->isEmptyLeaf()) {
 
-      for (int i=0; i < 4; ++i) {
-        delete node->children[i];
+      for (auto p: node->children) {
+        delete p;
       }      
     }
 

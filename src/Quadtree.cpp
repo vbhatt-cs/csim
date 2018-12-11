@@ -1,10 +1,11 @@
+// test quadtrees
+
 #include "Global.h"
 #include "Quadtree.h"
 #include <vector>
 #include <algorithm>
 
 using namespace std;
-
 
 using Coor = double;
 

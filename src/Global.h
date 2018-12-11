@@ -1,5 +1,7 @@
 #pragma once
 
+// globally useful includes, macros, and types
+
 #include <cassert>
 #include <cmath>
 #include <iostream>
@@ -122,4 +124,3 @@ struct TimeStats
   sint8 totalMicros;
   int steps;
 };
-  

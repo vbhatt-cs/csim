@@ -7,7 +7,7 @@ Unit makeMarine(int owner_, const Vec2 &pos)
 {
   Unit u(owner_, pos);
 
-  u.type = Marine;
+  u.type = MARINE;
 
   u.radius = 9;
   u.maxSpeed = 4;
@@ -27,7 +27,7 @@ Unit makeTank(int owner_, const Vec2 &pos)
 {
   Unit u(owner_, pos);
 
-  u.type = Tank;
+  u.type = TANK;
 
   u.radius = 16;
   u.maxSpeed = 4;
