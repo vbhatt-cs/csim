@@ -6,7 +6,10 @@
 
 struct Unit
 {
-  static int id; // increases with every constructor call
+  // id increases with every constructor call
+  // careful: only create new units via construction
+  
+  static int id; 
   
   Unit(int owner_ = -1, const Vec2 &pos_ = { 0, 0 })
     : owner(owner_), pos(pos_)
@@ -34,42 +37,35 @@ struct Unit
 
     startValues();
   }
-  
+
   // fixed unit type properties
   fp_t radius;       // pixels
   fp_t maxSpeed;     // pixels/frame
   fp_t visionRange;  // pixels
   fp_t attackRange;  // pixels
-  int    maxHp;
-  int    attack;
-  int    cooldown;     // frames to wait before attacking next (0 = constant firing)
-  bool   onlyAttackWhenStopped;
+  int  maxHp;
+  int  attack;
+  int  cooldown;     // frames to wait before attacking next (0 = constant firing)
+  bool onlyAttackWhenStopped;
   
   // static
-  int    unitId;
-  int    type;
-  int    owner;
+  int unitId;
+  int type;
+  int owner;
 
   // dynamic
-  bool   alive;
-  Vec2   pos;
+  bool alive;
+  Vec2 pos;
 
-  Vec2   delta;      // position change per tick
-  Vec2   targetPos;
-  int    moveCount; // = 0 <=> stop
+  Vec2 delta;      // position change per tick
+  Vec2 targetPos;
+  int  moveCount; // = 0 <=> stop
 
-  int    hp;
-  int    cooldownCount;  // <= 0 <=> can attack
+  int hp;
+  int cooldownCount;  // <= 0 <=> can attack
 
-  fp_t getX() const
-  {
-    return pos.x;
-  }
-  
-  fp_t getY() const
-  {
-    return pos.y;
-  }
+  fp_t getX() const { return pos.x; }
+  fp_t getY() const { return pos.y; }
   
   void startValues()
   {
@@ -98,8 +94,7 @@ struct Unit
     fp_t time = d / speed;
 
     if (time >= 100'000) {
-      std::cerr << "motion too slow" << std::endl;
-      exit(10);
+      ERR("motion too slow");
     }
     
     moveCount = static_cast<int>(ceil(time));
