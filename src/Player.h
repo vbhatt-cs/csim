@@ -3,7 +3,7 @@
 #include "Global.h"
 #include "World.h"
 
-struct PlayerView;
+class PlayerView;
 
 class Player
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-class Unit;
+struct Unit;
 
 struct WorldListener
 {

@@ -64,6 +64,7 @@ $(shell mkdir -p $(DEPBASE)/dbg $(DEPBASE)/opt $(OBJBASE)/dbg $(OBJBASE)/opt  >/
 $(shell rm -f $(PROG) >/dev/null)
 
 CC := g++
+#CC := clang++
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 COMPILE.cpp = $(CC) $(DEPFLAGS) $(CCOPTS) $(TARGET_ARCH) -c
 POSTCOMPILE = @mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d && touch $@
