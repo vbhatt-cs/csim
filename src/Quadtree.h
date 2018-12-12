@@ -17,13 +17,13 @@
 
 // half-open rectangle [xMin, xMax) x [yMin, yMax)
 template <typename Coor>
-struct Rectangle
+struct Rectangle1
 {
   Coor xMin, xMax, yMin, yMax;
 };
 
 template <typename Coor>
-std::ostream &operator<<(std::ostream &os, const Rectangle<Coor> &r)
+std::ostream &operator<<(std::ostream &os, const Rectangle1<Coor> &r)
 {
   os << "[ " << r.xMin << " " << r.xMax << " " << r.yMin << " " << r.yMax << " ]";
   return os;
@@ -38,7 +38,7 @@ public:
   static_assert(std::is_same<Coor, decltype(((Point*)nullptr)->getY())>(),
                 "getX/getY don't match");
 
-  using Rect = Rectangle<Coor>;
+  using Rect = Rectangle1<Coor>;
   
 private:
 
